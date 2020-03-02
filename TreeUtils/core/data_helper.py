@@ -73,7 +73,8 @@ class DataHelper:
     @classmethod
     def fit(cls, graph, X, y, **kwargs):
         score_handler = dict_utils.get(kwargs, 'score_handler', _default_fit_score_handler)
-        population_cal_field, scores = cls._fit(graph, X, y, score_handler, **kwargs)
+        kwargs['score_handler'] = score_handler
+        population_cal_field, scores = cls._fit(graph, X, y, **kwargs)
         score_data = {'pred_score_key': score_handler.pred_score_key,
                       'color_score_key': score_handler.color_score_key,
                       'population_cal_field_key': score_handler.population_cal_field_key,
@@ -93,8 +94,8 @@ class DataHelper:
             population_cal_field = {}
         kwargs['fit_population_cal_field'] = population_cal_field
         kwargs['fit_score_dict'] = graph.get_score().to_dict()
-
-        actual_population_cal_field, scores = cls._fit(graph, X_test, y_test, score_handler, **kwargs)
+        kwargs['score_handler'] = score_handler
+        actual_population_cal_field, scores = cls._fit(graph, X_test, y_test, **kwargs)
         score_data = {'pred_score_key': score_handler.pred_score_key,
                       'color_score_key': score_handler.color_score_key,
                       'population_cal_field_key': score_handler.population_cal_field_key,
