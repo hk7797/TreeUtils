@@ -129,3 +129,4 @@ You can also convert pydot or NetworkX object to bigraph. Using `BiGraph.from_py
 ## Example
 
 You can check notebook1 for basic implementation.
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hk7797/TreeUtils/master?filepath=notebook1.ipynb)
